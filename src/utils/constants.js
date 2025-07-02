@@ -11,7 +11,7 @@ export const WHITELIST_DOMAINS = [
 
   // Lưu ý: Đây là domain ví dụ sau khi Deploy Production (xem video 75 và video 76 để hiểu rõ kiến thức phần này, còn hiện tại mình đã xóa domain này rồi, đừng cố truy cập làm gì =))
   'https://trello-web-mu.vercel.app',
-  'https://taskflow-1xati8p40-huylebrons-projects.vercel.app'
+  'https://taskflow-web-tan.vercel.app'
 ]
 
 export const BOARD_TYPES = {

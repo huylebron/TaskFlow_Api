@@ -29,8 +29,8 @@ export const corsOptions = {
     }
     
     // Log để debug
-    console.log('🚨 CORS blocked origin:', origin)
-    console.log('🔍 Allowed domains:', WHITELIST_DOMAINS)
+    //console.log('🚨 CORS blocked origin:', origin)
+    //console.log('🔍 Allowed domains:', WHITELIST_DOMAINS)
 
 
     // Cuối cùng nếu domain không được chấp nhận thì trả về lỗi
