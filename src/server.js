@@ -70,17 +70,16 @@ const START_SERVER = () => {
     // ...vv
   })
 
+
   // Môi trường Production (cụ thể hiện tại là đang support Render.com)
   if (env.BUILD_MODE === 'production') {
-    // ✅ FIX: Bind to 0.0.0.0 for Render deployment
-    const port = process.env.PORT || 8017
-    const host = '0.0.0.0'
-    
-    server.listen(port, host, () => {
-      console.log(`3. Production: Hi ${env.AUTHOR}, Back-end Server is running successfully at Host: ${host} and Port: ${port}`)
+    // Dùng server.listen thay vì app.listen vì lúc này server đã bao gồm express app và đã config socket.io
+    server.listen(process.env.PORT, () => {
+      console.log(`3. Production: Hi ${env.AUTHOR}, Back-end Server is running successfully at Port: ${process.env.PORT}`)
     })
   } else {
     // Môi trường Local Dev
+    // Dùng server.listen thay vì app.listen vì lúc này server đã bao gồm express app và đã config socket.io
     server.listen(env.LOCAL_DEV_APP_PORT, env.LOCAL_DEV_APP_HOST, () => {
       console.log(`3. Local DEV: Hi ${env.AUTHOR}, Back-end Server is running successfully at Host: ${env.LOCAL_DEV_APP_HOST} and Port: ${env.LOCAL_DEV_APP_PORT}`)
     })
@@ -106,7 +105,7 @@ const START_SERVER = () => {
     // Create database indexes for optimized queries
     console.log('2.1. Creating database indexes for optimized queries...')
     await cardModel.createIndexes()
-    
+
     // Khởi động Server Back-end sau khi đã Connect Database thành công
     START_SERVER()
   } catch (error) {
