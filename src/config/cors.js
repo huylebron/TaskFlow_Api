@@ -19,11 +19,19 @@ export const corsOptions = {
 
     // Ngược lại thì hiện tại code chúng ta đang làm còn 1 trường hợp là:
     // env.BUILD_MODE === 'production'
+    if (!origin) {
+      return callback(null, true)
+    }
 
     // Kiểm tra xem origin có phải là domain được chấp nhận hay không
     if (WHITELIST_DOMAINS.includes(origin)) {
       return callback(null, true)
     }
+    
+    // Log để debug
+    console.log('🚨 CORS blocked origin:', origin)
+    console.log('🔍 Allowed domains:', WHITELIST_DOMAINS)
+
 
     // Cuối cùng nếu domain không được chấp nhận thì trả về lỗi
     return callback(new ApiError(StatusCodes.FORBIDDEN, `${origin} not allowed by our CORS Policy.`))
